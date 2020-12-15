@@ -23,6 +23,10 @@ struct CandlesDecoder {
         public let price: Price
         public let volume: Float32
     }
+    
+    public
+    init() {
+    }
 }
 
 public

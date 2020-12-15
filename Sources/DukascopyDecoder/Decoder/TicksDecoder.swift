@@ -20,6 +20,10 @@ struct TicksDecoder {
         public let askv: Float32
         public let bidv: Float32
     }
+    
+    public
+    init() {
+    }
 }
 
 public
