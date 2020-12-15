@@ -8,8 +8,6 @@
 
 import Foundation
 
-
-
 public
 struct TicksDecoder {
     public
@@ -19,11 +17,19 @@ struct TicksDecoder {
         public let bidp: Int32
         public let askv: Float32
         public let bidv: Float32
+
+        public
+        init(time: Int32, askp: Int32, bidp: Int32, askv: Float32, bidv: Float32) {
+            self.time = time
+            self.askp = askp
+            self.bidp = bidp
+            self.askv = askv
+            self.bidv = bidv
+        }
     }
-    
+
     public
-    init() {
-    }
+    init() {}
 }
 
 public
