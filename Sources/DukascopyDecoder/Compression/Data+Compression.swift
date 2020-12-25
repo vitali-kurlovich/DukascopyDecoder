@@ -53,7 +53,7 @@ import Foundation
         stream.src_size = sourceSize
 
         var res = preload
-        let flags: Int32 = Int32(COMPRESSION_STREAM_FINALIZE.rawValue)
+        let flags = Int32(COMPRESSION_STREAM_FINALIZE.rawValue)
 
         while true {
             switch compression_stream_process(&stream, flags) {
@@ -76,7 +76,6 @@ import Foundation
 #else
 
     extension Data {
-        internal
         func decompress() -> Data? {
             nil
         }

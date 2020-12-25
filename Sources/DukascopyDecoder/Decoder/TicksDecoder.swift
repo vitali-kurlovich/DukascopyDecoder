@@ -6,27 +6,12 @@
 //  Copyright © 2020 Vitali Kurlovich. All rights reserved.
 //
 
+import DukascopyModel
 import Foundation
 
 public
 struct TicksDecoder {
-    public
-    struct Tick: Equatable {
-        public let time: Int32
-        public let askp: Int32
-        public let bidp: Int32
-        public let askv: Float32
-        public let bidv: Float32
-
-        public
-        init(time: Int32, askp: Int32, bidp: Int32, askv: Float32, bidv: Float32) {
-            self.time = time
-            self.askp = askp
-            self.bidp = bidp
-            self.askv = askv
-            self.bidv = bidv
-        }
-    }
+    public typealias Tick = DukascopyModel.Tick
 
     public
     init() {}
