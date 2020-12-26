@@ -3,5 +3,5 @@ import XCTest
 import DukascopyDecoderTests
 
 var tests = [XCTestCaseEntry]()
-tests += aallTests()
+tests += allTests()
 XCTMain(tests)
