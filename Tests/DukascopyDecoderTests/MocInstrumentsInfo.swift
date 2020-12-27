@@ -8,7 +8,7 @@
 import Foundation
 import XCTest
 
-class MocInstrumentsInfo {
+final class MocInstrumentsInfo {
     private(set) lazy var jsonData: Data = {
         resource.data(using: .utf8)!
     }()
