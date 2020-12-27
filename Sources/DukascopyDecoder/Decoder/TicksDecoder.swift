@@ -25,9 +25,7 @@ extension TicksDecoder {
             return []
         }
 
-        guard let decompressed = data.decompress() else {
-            throw DecoderError.decompressError
-        }
+        let decompressed = try data.decompress()
 
         struct _Block {
             let time: Int32

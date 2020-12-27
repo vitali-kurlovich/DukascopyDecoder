@@ -24,7 +24,7 @@ extension CandlesDecoder {
             return []
         }
 
-        guard let decompressed = data.decompress() else {
+        guard let decompressed = try? data.decompress() else {
             throw DecoderError.decompressError
         }
 

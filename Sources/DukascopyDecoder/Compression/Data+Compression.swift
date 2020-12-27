@@ -8,6 +8,12 @@
 
 import Foundation
 
+enum LZMAError: Error {
+    case encodingError
+    case internalError
+    case invalidFormat
+}
+
 #if canImport(Compression)
     import Compression
 
@@ -15,10 +21,10 @@ import Foundation
     extension Data {
         @available(OSX 10.11, *)
 
-        func decompress() -> Data? {
-            withUnsafeBytes { (source) -> Data? in
+        func decompress() throws -> Data {
+            try withUnsafeBytes { (source) -> Data in
                 let config = (operation: COMPRESSION_STREAM_DECODE, algorithm: COMPRESSION_LZMA)
-                return perform(config, source: source, sourceSize: count)
+                return try perform(config, source: source, sourceSize: count)
             }
         }
     }
@@ -28,15 +34,19 @@ import Foundation
 
     @available(OSX 10.11, *)
     private
-    func perform(_ config: Config, source: UnsafeRawBufferPointer, sourceSize: Int, preload: Data = Data()) -> Data? {
-        guard config.operation == COMPRESSION_STREAM_ENCODE || sourceSize > 0 else { return nil }
+    func perform(_ config: Config, source: UnsafeRawBufferPointer, sourceSize: Int, preload: Data = Data()) throws -> Data {
+        guard config.operation == COMPRESSION_STREAM_ENCODE || sourceSize > 0 else {
+            throw LZMAError.invalidFormat
+        }
 
         let streamBase = UnsafeMutablePointer<compression_stream>.allocate(capacity: 1)
         defer { streamBase.deallocate() }
         var stream = streamBase.pointee
 
         let status = compression_stream_init(&stream, config.operation, config.algorithm)
-        guard status != COMPRESSION_STATUS_ERROR else { return nil }
+        guard status != COMPRESSION_STATUS_ERROR else {
+            throw LZMAError.encodingError
+        }
         defer { compression_stream_destroy(&stream) }
 
         let bufferSize = Swift.max(Swift.min(sourceSize, 64 * 1024), 64)
@@ -44,7 +54,7 @@ import Foundation
         defer { buffer.deallocate() }
 
         guard let src_ptr = source.bindMemory(to: UInt8.self).baseAddress else {
-            return nil
+            throw LZMAError.internalError
         }
 
         stream.dst_ptr = buffer
@@ -58,7 +68,9 @@ import Foundation
         while true {
             switch compression_stream_process(&stream, flags) {
             case COMPRESSION_STATUS_OK:
-                guard stream.dst_size == 0 else { return nil }
+                guard stream.dst_size == 0 else {
+                    throw LZMAError.internalError
+                }
                 res.append(buffer, count: stream.dst_ptr - buffer)
                 stream.dst_ptr = buffer
                 stream.dst_size = bufferSize
@@ -67,17 +79,21 @@ import Foundation
                 res.append(buffer, count: stream.dst_ptr - buffer)
                 return res
 
+            case COMPRESSION_STATUS_ERROR:
+                throw LZMAError.encodingError
             default:
-                return nil
+                throw LZMAError.internalError
             }
         }
     }
 
 #else
 
+    import SWCompression
+
     extension Data {
-        func decompress() -> Data? {
-            nil
+        func decompress() throws -> Data {
+            try LZMA.decompress(data: self)
         }
     }
 
