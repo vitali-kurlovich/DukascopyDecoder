@@ -36,4 +36,8 @@ final class TicksDecoderTest: XCTestCase {
         XCTAssertEqual(lastTick.askv, 1.1)
         XCTAssertEqual(lastTick.bidv, 1.1)
     }
+
+    static var allTests = [
+        ("testTicksDecoding", testTicksDecoding),
+    ]
 }
