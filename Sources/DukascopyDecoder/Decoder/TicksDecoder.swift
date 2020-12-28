@@ -20,6 +20,16 @@ struct TicksDecoder {
 public
 extension TicksDecoder {
     @available(OSX 10.11, *)
+    func decode(in timeRange: Range<Date>, with data: Data) throws -> TicksContainer {
+        let ticks = try decode(with: data)
+
+        return .init(timeRange: timeRange, ticks: ticks)
+    }
+}
+
+public
+extension TicksDecoder {
+    @available(OSX 10.11, *)
     func decode(with data: Data) throws -> [Tick] {
         if data.isEmpty {
             return []
