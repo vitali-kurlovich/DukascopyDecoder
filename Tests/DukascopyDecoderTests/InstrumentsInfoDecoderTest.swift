@@ -61,8 +61,6 @@ final class InstrumentsInfoDecoderTest: XCTestCase {
                            "E_3988-HKG",
                        ])
     }
-
-    
 }
 
 private let utc = TimeZone(identifier: "UTC")!
