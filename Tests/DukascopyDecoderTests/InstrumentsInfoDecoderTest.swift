@@ -62,9 +62,7 @@ final class InstrumentsInfoDecoderTest: XCTestCase {
                        ])
     }
 
-    static var allTests = [
-        ("testInstrumentsInfoDecoder", testInstrumentsInfoDecoder),
-    ]
+    
 }
 
 private let utc = TimeZone(identifier: "UTC")!
