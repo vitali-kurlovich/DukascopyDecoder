@@ -12,8 +12,11 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Run tests
-      run: xcodebuild -scheme DukascopyDecoder test -enableCodeCoverage YES -parallel-testing-enabled YES
-  
+      run: xcodebuild -scheme DukascopyDecoder test -destination 'platform:macOS, name:Any Mac' -enableCodeCoverage YES -parallel-testing-enabled YES
+
+    - name: Upload coverage to Codecov
+      uses: codecov/codecov-action@v3
+
   test_ubuntu:
     runs-on: ubuntu-latest
     steps:
