@@ -15,7 +15,7 @@ let package = Package(
     dependencies: [
         .package(url: "https://github.com/vitali-kurlovich/DukascopyModel.git", from: "1.6.0"),
         .package(url: "https://github.com/tsolomko/SWCompression.git",
-                 from: "4.5.0"),
+                 from: "4.8.0"),
     ],
     targets: [
         .target(

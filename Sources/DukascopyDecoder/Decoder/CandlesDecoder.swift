@@ -1,7 +1,4 @@
 //
-//  CandlesDecoder.swift
-//  Dukascopy
-//
 //  Created by Vitali Kurlovich on 4/19/20.
 //
 
@@ -37,7 +34,7 @@ extension CandlesDecoder {
             let volume: UInt32
         }
 
-        let candles = decompressed.withUnsafeBytes { (pointer) -> [Candle] in
+        let candles = decompressed.withUnsafeBytes { pointer -> [Candle] in
             let memory = pointer.bindMemory(to: _Block.self)
 
             var candles = [Candle]()

@@ -1,7 +1,4 @@
 //
-//  File.swift
-//
-//
 //  Created by Vitali Kurlovich on 26.12.20.
 //
 
@@ -21,7 +18,7 @@ struct InstrumentsInfoDecoder {
 
 private let decoder: JSONDecoder = {
     let decoder = JSONDecoder()
-    decoder.dateDecodingStrategy = .custom { (decoder) -> Date in
+    decoder.dateDecodingStrategy = .custom { decoder -> Date in
         let container = try decoder.singleValueContainer()
         let dateStr = try container.decode(String.self)
         let miliseconds = Int(dateStr) ?? 0

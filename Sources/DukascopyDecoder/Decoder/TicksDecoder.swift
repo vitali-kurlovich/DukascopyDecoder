@@ -1,7 +1,4 @@
 //
-//  DukascopyDecoder.swift
-//  Chart
-//
 //  Created by Vitali Kurlovich on 3/12/20.
 //  Copyright © 2020 Vitali Kurlovich. All rights reserved.
 //
@@ -19,7 +16,7 @@ struct TicksDecoder {
 
 public
 extension TicksDecoder {
-    @available(OSX 10.11, *)
+   
     func decode(in timeRange: Range<Date>, with data: Data) throws -> TicksContainer {
         let ticks = try decode(with: data)
 
@@ -29,7 +26,7 @@ extension TicksDecoder {
 
 public
 extension TicksDecoder {
-    @available(OSX 10.11, *)
+    
     func decode(with data: Data) throws -> [Tick] {
         if data.isEmpty {
             return []
@@ -45,7 +42,7 @@ extension TicksDecoder {
             let bidv: UInt32
         }
 
-        return decompressed.withUnsafeBytes { (pointer) -> [Tick] in
+        return decompressed.withUnsafeBytes { pointer -> [Tick] in
             let memory = pointer.bindMemory(to: _Block.self)
 
             var blocks = [Tick]()

@@ -1,7 +1,4 @@
 //
-//  File.swift
-//
-//
 //  Created by Vitali Kurlovich on 15.12.20.
 //
 
