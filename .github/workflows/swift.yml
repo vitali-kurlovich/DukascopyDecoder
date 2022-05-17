@@ -30,4 +30,4 @@ jobs:
       run: chmod +x generate_linux_tests.rb && ./generate_linux_tests.rb
       
     - name: Run tests
-      run: swift test -v
+      run: swift test 
