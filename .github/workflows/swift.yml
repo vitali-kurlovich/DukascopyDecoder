@@ -15,7 +15,7 @@ jobs:
       run: xcodebuild -scheme DukascopyDecoder test -destination 'platform=macOS' -enableCodeCoverage YES -parallel-testing-enabled YES build test
 
     - name: Upload coverage to Codecov
-      uses: codecov/codecov-action@v3
+      uses: codecov/codecov-action@v2
 
   test_ubuntu:
     runs-on: ubuntu-latest
