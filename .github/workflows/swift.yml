@@ -6,8 +6,13 @@ on:
   pull_request:
     branches: [ main ]
 
+
+
 jobs:
   test_macos:
+    env:
+      CODECOV_TOKEN : 4e09d273-dd96-48a4-bde4-6e3ad17398ab
+    
     runs-on: macos-latest
     steps:
     - uses: actions/checkout@v3
@@ -15,7 +20,7 @@ jobs:
       run: xcodebuild -scheme DukascopyDecoder test -destination 'platform=macOS' -enableCodeCoverage YES -parallel-testing-enabled YES build test
 
     - name: Upload coverage to Codecov
-      uses: codecov/codecov-action@v2
+      run: bash <(curl -s https://codecov.io/bash) -X xcodellvm
 
   test_ubuntu:
     runs-on: ubuntu-latest
