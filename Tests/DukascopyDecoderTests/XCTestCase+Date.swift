@@ -1,7 +1,4 @@
 //
-//  XCTestCase+Date.swift
-//  Dukascopy
-//
 //  Created by Vitali Kurlovich on 4/15/20.
 //
 

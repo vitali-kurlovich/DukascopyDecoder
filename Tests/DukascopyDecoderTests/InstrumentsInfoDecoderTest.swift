@@ -1,7 +1,4 @@
 //
-//  File.swift
-//
-//
 //  Created by Vitali Kurlovich on 26.12.20.
 //
 
@@ -11,16 +8,12 @@ import Foundation
 import XCTest
 
 final class InstrumentsInfoDecoderTest: XCTestCase {
-    func testInstrumentsInfoDecoder() {
+    func testInstrumentsInfoDecoder() throws {
         let decoder = InstrumentsInfoDecoder()
-        let moc = MocInstrumentsInfo()
 
-        XCTAssertNoThrow(try decoder.decode(with: moc.jsonData))
-        let finstruments = try? decoder.decode(with: moc.jsonData)
+        let finstruments = try decoder.decode(with: MocInstrumentsInfo.jsonData)
 
-        XCTAssertNotNil(finstruments)
-
-        let _jcius = finstruments?.instruments["JCI.US/USD"]
+        let _jcius = finstruments.instruments["JCI.US/USD"]
 
         XCTAssertNotNil(_jcius)
         let jcius = _jcius!
@@ -43,7 +36,7 @@ final class InstrumentsInfoDecoderTest: XCTestCase {
         XCTAssertEqual(jcius.historyStartDay, accuracyFormatter.date(from: "02-11-2017 00:00:00.000")!)
         XCTAssertNil(jcius.unit)
 
-        let _group = finstruments?.groups["Hong Kong"]
+        let _group = finstruments.groups["Hong Kong"]
 
         XCTAssertNotNil(_group)
 

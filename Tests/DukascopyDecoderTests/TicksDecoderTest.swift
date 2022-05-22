@@ -1,21 +1,15 @@
 //
-//  File.swift
-//
-//
 //  Created by Vitali Kurlovich on 27.12.20.
 //
 
 @testable import DukascopyDecoder
 import XCTest
 
-private let moc = MocBi5()
 private let decoder = TicksDecoder()
 
 final class TicksDecoderTest: XCTestCase {
-    func testTicksDecoding() {
-        XCTAssertNoThrow { try decoder.decode(with: moc.USDTHB) }
-
-        let ticks = try! decoder.decode(with: moc.USDTHB)
+    func testTicksDecoding() throws {
+        let ticks = try decoder.decode(with: MocBi5.USDTHB)
 
         XCTAssertEqual(ticks.count, 1096)
 
@@ -37,14 +31,12 @@ final class TicksDecoderTest: XCTestCase {
         XCTAssertEqual(lastTick.bidv, 1.1)
     }
 
-    func testTicksDecoding_1() {
+    func testTicksDecoding_1() throws {
         let begin = formatter.date(from: "02-01-2020 01:00")!
         let end = formatter.date(from: "02-01-2020 02:00")!
         let range = begin ..< end
 
-        XCTAssertNoThrow { try decoder.decode(in: range, with: moc.USDTHB) }
-
-        let container = try! decoder.decode(in: range, with: moc.USDTHB)
+        let container = try decoder.decode(in: range, with: MocBi5.USDTHB)
 
         let dstBegin = accuracyFormatter.date(from: "02-01-2020 01:00:00.138")!
         let dstEnd = accuracyFormatter.date(from: "02-01-2020 01:59:53.390")!

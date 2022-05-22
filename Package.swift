@@ -16,11 +16,16 @@ let package = Package(
         .package(url: "https://github.com/vitali-kurlovich/DukascopyModel.git", from: "1.6.0"),
         .package(url: "https://github.com/tsolomko/SWCompression.git",
                  from: "4.8.0"),
+        .package(url: "https://github.com/apple/swift-nio.git", from: "2.38.0"),
     ],
     targets: [
         .target(
             name: "DukascopyDecoder",
-            dependencies: ["DukascopyModel", "SWCompression"]
+            dependencies: [
+                "DukascopyModel",
+                "SWCompression",
+                .product(name: "NIO", package: "swift-nio"),
+            ]
         ),
 
         .testTarget(

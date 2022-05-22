@@ -1,7 +1,4 @@
 //
-//  XCTestCase+Bundle.swift
-//  DukascopyTests
-//
 //  Created by Vitali Kurlovich on 4/17/20.
 //
 
@@ -9,7 +6,7 @@ import Foundation
 import XCTest
 
 final class MocInstrumentsInfo {
-    private(set) lazy var jsonData: Data = resource.data(using: .utf8)!
+    static let jsonData: Data = resource.data(using: .utf8)!
 }
 
 private let resource = #"""

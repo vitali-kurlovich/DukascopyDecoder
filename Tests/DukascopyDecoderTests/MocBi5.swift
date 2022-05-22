@@ -1,7 +1,4 @@
 //
-//  File.swift
-//
-//
 //  Created by Vitali Kurlovich on 27.12.20.
 //
 
@@ -10,7 +7,7 @@ import XCTest
 
 final class MocBi5 {
     /// https://datafeed.dukascopy.com/datafeed/USDTHB/2020/00/02/01h_ticks.bi5
-    private(set) lazy var USDTHB: Data = .init(bytes)
+    static let USDTHB: Data = .init(bytes)
 }
 
 private
