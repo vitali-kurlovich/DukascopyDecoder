@@ -3,6 +3,7 @@
 //
 
 @testable import DukascopyDecoder
+import NIO
 import XCTest
 
 private let decoder = TicksDecoder()
@@ -29,6 +30,11 @@ final class TicksDecoderTest: XCTestCase {
         XCTAssertEqual(lastTick.bidp, 301_074)
         XCTAssertEqual(lastTick.askv, 1.1)
         XCTAssertEqual(lastTick.bidv, 1.1)
+
+        let buffer = ByteBuffer(data: MocBi5.USDTHB)
+        let nioTicks = try decoder.decode(with: buffer)
+
+        XCTAssertEqual(ticks, nioTicks)
     }
 
     func testTicksDecoding_1() throws {
@@ -42,6 +48,11 @@ final class TicksDecoderTest: XCTestCase {
         let dstEnd = accuracyFormatter.date(from: "02-01-2020 01:59:53.390")!
 
         XCTAssertEqualDate(container.ticksTimeRange!, dstBegin ..< dstEnd)
+
+        let buffer = ByteBuffer(data: MocBi5.USDTHB)
+        let nioContainer = try decoder.decode(in: range, with: buffer)
+
+        XCTAssertEqual(container, nioContainer)
     }
 }
 

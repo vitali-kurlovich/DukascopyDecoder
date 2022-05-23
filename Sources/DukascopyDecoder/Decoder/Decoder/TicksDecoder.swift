@@ -7,14 +7,6 @@ import DukascopyModel
 import Foundation
 
 public
-struct TicksDecoder {
-    public typealias Tick = DukascopyModel.Tick
-
-    public
-    init() {}
-}
-
-public
 extension TicksDecoder {
     func decode(in timeRange: Range<Date>, with data: Data) throws -> TicksContainer {
         let ticks = try decode(with: data)

@@ -5,6 +5,7 @@
 import Foundation
 
 @testable import DukascopyDecoder
+import NIO
 import XCTest
 
 final class InstrumentsInfoDecoderTest: XCTestCase {
@@ -53,6 +54,12 @@ final class InstrumentsInfoDecoderTest: XCTestCase {
                            "E_1398-HKG",
                            "E_3988-HKG",
                        ])
+
+        let buffer = ByteBuffer(data: MocInstrumentsInfo.jsonData)
+
+        let nioFinstruments = try decoder.decode(with: buffer)
+
+        XCTAssertEqual(finstruments, nioFinstruments)
     }
 }
 
