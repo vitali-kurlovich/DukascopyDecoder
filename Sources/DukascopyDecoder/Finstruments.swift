@@ -20,6 +20,46 @@ extension Finstruments {
     }
 }
 
+
+
+extension Instrument {
+    init(_ instrument: Finstruments.Instrument) {
+        self.init(symbol: instrument.name ,
+                  meta: .init(instrument),
+
+                  currency: .init(instrument),
+                  history: .init(instrument),
+
+                  pipValue: instrument.pipValue,
+                  commoditiesPerContract: instrument.commoditiesPerContract)
+    }
+}
+
+extension InstrumentCurrency {
+    init(_ instrument: Finstruments.Instrument) {
+        self.init(base: instrument.baseCurrency, quote: instrument.quoteCurrency)
+    }
+}
+
+extension InstrumentMeta {
+    init(_ instrument: Finstruments.Instrument) {
+        self.init(title: instrument.title,
+                  description: instrument.description,
+                  tags: instrument.tags)
+    }
+}
+
+extension InstrumentHistory {
+    init(_ instrument: Finstruments.Instrument) {
+        self.init(filename: instrument.filename ?? "",
+                  beginTick: instrument.historyStartTick,
+                  begin10sec: instrument.historyStart10sec,
+                  beginMinute: instrument.historyStartMinute,
+                  beginHour: instrument.historyStartHour,
+                  beginDay: instrument.historyStartDay)
+    }
+}
+
 public
 extension Finstruments {
     struct Instrument: Equatable {
