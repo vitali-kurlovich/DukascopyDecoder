@@ -20,11 +20,9 @@ extension Finstruments {
     }
 }
 
-
-
 extension Instrument {
     init(_ instrument: Finstruments.Instrument) {
-        self.init(symbol: instrument.name ,
+        self.init(symbol: instrument.name,
                   meta: .init(instrument),
 
                   currency: .init(instrument),

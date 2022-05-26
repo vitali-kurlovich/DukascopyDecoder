@@ -34,24 +34,11 @@ public struct InstrumentCurrency: Equatable {
     public let quote: String
 }
 
-public protocol InstrumentsGroup {
-    var id: String {get }
-    var title: String {get }
-    var instruments: [Instrument] { get }
-}
-
-public struct Group : Equatable, InstrumentsGroup {
+public struct Group: Equatable {
     public let id: String
     public let title: String
-    
-    public let instruments: [Instrument]
-    
-    public let groups: [SubGroup]
-}
 
-public struct SubGroup : Equatable, InstrumentsGroup {
-    public let id: String
-    public let title: String
-    
     public let instruments: [Instrument]
+
+    public let groups: [Group]
 }

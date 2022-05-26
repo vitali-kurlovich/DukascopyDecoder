@@ -60,6 +60,14 @@ final class InstrumentsInfoDecoderTest: XCTestCase {
         let nioFinstruments = try decoder.decode(with: buffer)
 
         XCTAssertEqual(finstruments, nioFinstruments)
+
+        let groupDecoder = InstrumentsGroupsDecoder()
+
+        let groups = try groupDecoder.decode(with: MocInstrumentsInfo.jsonData)
+
+        let nioGroups = try groupDecoder.decode(with: buffer)
+
+        XCTAssertEqual(groups, nioGroups)
     }
 }
 
