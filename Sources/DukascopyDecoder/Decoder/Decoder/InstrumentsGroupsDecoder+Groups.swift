@@ -10,7 +10,7 @@ extension InstrumentsGroupsDecoder {
             ($0.filename?.isEmpty ?? true) ? nil : Instrument($0)
         }
 
-        let groups = Array(source.groups.values)
+        let groups = source.groups.values.sorted { $0.id < $1.id }
 
         return groups.compactMap { group -> Group? in
             group.parent == nil ? self.group(for: group, instruments: instruments, groups: groups) : nil
@@ -21,7 +21,7 @@ extension InstrumentsGroupsDecoder {
                instruments: [String: Instrument],
                groups: [Finstruments.Group]) -> Group
     {
-        let groupInstruments = src.instruments?.compactMap { instruments[$0] } ?? []
+        let groupInstruments = src.instruments?.compactMap { instruments[$0] }.sorted(by: { $0.symbol < $1.symbol }) ?? []
 
         let subgroups = groups.filter { $0.parent == src.id }.map { item -> Group in
             group(for: item, instruments: instruments, groups: groups)
