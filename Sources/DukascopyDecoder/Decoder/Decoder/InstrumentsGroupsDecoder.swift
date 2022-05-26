@@ -2,6 +2,7 @@
 //  Created by Vitali Kurlovich on 25.05.22.
 //
 
+import DukascopyModel
 import Foundation
 
 public

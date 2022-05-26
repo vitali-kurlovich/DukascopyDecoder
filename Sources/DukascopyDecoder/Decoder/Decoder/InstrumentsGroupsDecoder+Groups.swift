@@ -2,6 +2,7 @@
 //  Created by Vitali Kurlovich on 26.05.22.
 //
 
+import DukascopyModel
 import Foundation
 
 extension InstrumentsGroupsDecoder {
