@@ -7,7 +7,6 @@ import Foundation
 import DukascopyModel
 import NIO
 
-public
 extension InstrumentsInfoDecoder {
     func decode(with buffer: ByteBuffer) throws -> Finstruments {
         var buffer = buffer

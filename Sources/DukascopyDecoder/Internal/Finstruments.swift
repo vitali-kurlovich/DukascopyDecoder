@@ -5,19 +5,17 @@
 import DukascopyModel
 import Foundation
 
-public
 struct Finstruments: Equatable {
     public let instruments: [String: Instrument]
     public let groups: [String: Group]
 }
 
-public
 extension Finstruments {
     struct Group: Equatable {
-        public let id: String
-        public let title: String
-        public let parent: String?
-        public let instruments: [String]?
+        let id: String
+        let title: String
+        let parent: String?
+        let instruments: [String]?
     }
 }
 
@@ -59,35 +57,34 @@ extension InstrumentHistory {
     }
 }
 
-public
 extension Finstruments {
     struct Instrument: Equatable {
-        public let title: String
-        public let special: Bool
-        public let name: String
-        public let description: String
-        public let filename: String?
-        public let pipValue: Double
-        public let baseCurrency: String
-        public let quoteCurrency: String
-        public let tags: [String]
+        let title: String
+        let special: Bool
+        let name: String
+        let description: String
+        let filename: String?
+        let pipValue: Double
+        let baseCurrency: String
+        let quoteCurrency: String
+        let tags: [String]
 
-        public let historyStartTick: Date
-        public let historyStart10sec: Date
-        public let historyStartMinute: Date
-        public let historyStartHour: Date
-        public let historyStartDay: Date
+        let historyStartTick: Date
+        let historyStart10sec: Date
+        let historyStartMinute: Date
+        let historyStartHour: Date
+        let historyStartDay: Date
 
         private let _commoditiesPerContract: String?
 
-        public var commoditiesPerContract: Int? {
+        var commoditiesPerContract: Int? {
             guard let commodities = _commoditiesPerContract else {
                 return nil
             }
             return Int(commodities)
         }
 
-        public let unit: String?
+        let unit: String?
     }
 }
 

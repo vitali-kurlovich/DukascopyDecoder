@@ -6,9 +6,7 @@ import Foundation
 
 import DukascopyModel
 
-public
 struct InstrumentsInfoDecoder {
-    public
     func decode(with data: Data) throws -> Finstruments {
         let data = data.dropFirst("jsonp(".count).dropLast(")".count)
 
