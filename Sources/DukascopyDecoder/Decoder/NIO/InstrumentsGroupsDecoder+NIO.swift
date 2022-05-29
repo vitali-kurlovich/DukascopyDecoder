@@ -8,6 +8,7 @@ import Foundation
 import DukascopyModel
 import NIO
 
+public
 extension InstrumentsGroupsDecoder {
     func decode(with buffer: ByteBuffer) throws -> [Group] {
         let result = try decoder.decode(with: buffer)
