@@ -6,8 +6,11 @@ import DukascopyModel
 import Foundation
 
 public
-final class InstrumentsGroupsDecoder {
+struct InstrumentsGroupsDecoder {
     let decoder = InstrumentsInfoDecoder()
+
+    public
+    init() {}
 }
 
 public
