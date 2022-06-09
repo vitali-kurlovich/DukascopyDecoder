@@ -40,9 +40,13 @@ extension InstrumentCurrency {
 
 extension InstrumentMeta {
     init(_ instrument: Finstruments.Instrument) {
+        let tags = instrument.tags.filter { tag in
+            !tag.isEmpty
+        }
+
         self.init(title: instrument.title,
                   description: instrument.description,
-                  tags: instrument.tags)
+                  tags: tags)
     }
 }
 
