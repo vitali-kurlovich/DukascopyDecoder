@@ -10,8 +10,8 @@ import NIO
 extension InstrumentsInfoDecoder {
     func decode(with buffer: ByteBuffer) throws -> Finstruments {
         var buffer = buffer
-       
-       _ = buffer.readString(length: "jsonp(".count, encoding: .utf8)
+
+        _ = buffer.readString(length: "jsonp(".count, encoding: .utf8)
 
         return try buffer.readJSONDecodable(Finstruments.self, decoder: InfoJSONDecoderFactory.decoder, length: buffer.readableBytes - ")".count)!
     }
