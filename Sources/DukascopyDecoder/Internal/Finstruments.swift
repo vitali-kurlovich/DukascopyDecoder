@@ -52,8 +52,7 @@ extension InstrumentHistory {
                   beginTick: instrument.historyStartTick,
                   begin10sec: instrument.historyStart10sec,
                   beginMinute: instrument.historyStartMinute,
-                  beginHour: instrument.historyStartHour,
-                  beginDay: instrument.historyStartDay)
+                  beginHour: instrument.historyStartHour)
     }
 }
 
