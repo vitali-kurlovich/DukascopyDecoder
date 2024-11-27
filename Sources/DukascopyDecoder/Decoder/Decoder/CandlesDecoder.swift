@@ -15,7 +15,7 @@ struct CandlesDecoder {
 
 public
 extension CandlesDecoder {
-    func decode(with data: Data) throws -> [Candle] {
+    func decode(with data: Data) throws(DecoderError) -> [Candle] {
         if data.isEmpty {
             return []
         }

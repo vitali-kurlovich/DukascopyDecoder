@@ -7,7 +7,15 @@ import Foundation
 import SWCompression
 
 extension Data {
-    func decompress() throws -> Data {
-        try LZMA.decompress(data: self)
+    func decompress() throws(LZMAError) -> Data {
+        do {
+            return try LZMA.decompress(data: self)
+        } catch {
+            if let lzmaError = error as? LZMAError {
+                throw lzmaError
+            }
+
+            throw LZMAError.wrongProperties
+        }
     }
 }

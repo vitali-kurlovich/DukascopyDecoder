@@ -5,7 +5,7 @@
 import Foundation
 import XCTest
 
-final class MocBi5 {
+enum MocBi5 {
     /// https://datafeed.dukascopy.com/datafeed/USDTHB/2020/00/02/01h_ticks.bi5
     static let USDTHB: Data = .init(bytes)
 }

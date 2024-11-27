@@ -5,7 +5,7 @@
 import Foundation
 import XCTest
 
-final class MocInstrumentsInfo {
+enum MocInstrumentsInfo {
     static let jsonData: Data = resource.data(using: .utf8)!
 }
 
