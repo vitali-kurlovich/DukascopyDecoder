@@ -6,9 +6,9 @@
 import NIO
 import XCTest
 
-private let decoder = TicksDecoder()
-
 final class TicksDecoderTest: XCTestCase {
+    private let decoder = TicksDecoder()
+
     func testTicksDecoding() throws {
         let ticks = try decoder.decode(with: MocBi5.USDTHB)
 
