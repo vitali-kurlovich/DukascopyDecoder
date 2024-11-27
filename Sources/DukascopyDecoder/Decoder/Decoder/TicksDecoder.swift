@@ -9,15 +9,12 @@ import SWCompression
 
 public
 extension TicksDecoder {
-    func decode(in timeRange: Range<Date>, with data: Data) throws(DecoderError) -> TicksContainer {
+    func decode(in timeRange: DateInterval, with data: Data) throws(DecoderError) -> TicksContainer {
         let ticks = try decode(with: data)
 
         return .init(timeRange: timeRange, ticks: ticks)
     }
-}
 
-public
-extension TicksDecoder {
     func decode(with data: Data) throws(DecoderError) -> [Tick] {
         if data.isEmpty {
             return []

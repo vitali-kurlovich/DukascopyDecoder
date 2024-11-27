@@ -16,7 +16,7 @@ struct TicksDecoder {
 
 public
 extension TicksDecoder {
-    func decode(in timeRange: Range<Date>, with buffer: ByteBuffer) throws -> TicksContainer {
+    func decode(in timeRange: DateInterval, with buffer: ByteBuffer) throws -> TicksContainer {
         let ticks = try decode(with: buffer)
 
         return .init(timeRange: timeRange, ticks: ticks)

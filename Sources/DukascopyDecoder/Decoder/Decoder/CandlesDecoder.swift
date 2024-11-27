@@ -15,6 +15,11 @@ struct CandlesDecoder {
 
 public
 extension CandlesDecoder {
+    func decode(in timeRange: DateInterval, with data: Data) throws(DecoderError) -> CandlesContainer {
+        let candles = try decode(with: data)
+        return .init(timeRange: timeRange, candles: candles)
+    }
+
     func decode(with data: Data) throws(DecoderError) -> [Candle] {
         if data.isEmpty {
             return []
