@@ -18,7 +18,7 @@ let package = Package(
         ),
     ],
     dependencies: [
-        .package(url: "https://github.com/vitali-kurlovich/DukascopyModel.git", from: "1.14.0"),
+        .package(url: "https://github.com/vitali-kurlovich/DukascopyModel.git", from: "1.15.0"),
         .package(url: "https://github.com/tsolomko/SWCompression.git",
                  from: "4.8.0"),
         .package(url: "https://github.com/apple/swift-nio.git", from: "2.0.0"),
