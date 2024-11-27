@@ -47,7 +47,7 @@ extension CandlesDecoder {
                 let high = block.high.bigEndian
                 let volume = Float32(bitPattern: block.volume.bigEndian)
 
-                let price = Candle.Price(open: open, close: close, low: low, high: high)
+                let price = Price(open: open, close: close, low: low, high: high)
 
                 candles.append(.init(time: time, price: price, volume: volume))
             }
