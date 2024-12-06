@@ -4,14 +4,19 @@
 
 import NIO
 import NIOFoundationCompat
-import SWCompression
+import Foundation
 
 extension ByteBuffer {
-    func decompress() throws(LZMAError) -> ByteBuffer? {
-        guard let data = try getData(at: 0, length: readableBytes, byteTransferStrategy: .noCopy)?.decompress() else {
+    func decompress() throws -> ByteBuffer? {
+        guard let data = getData(at: 0, length: readableBytes, byteTransferStrategy: .noCopy) else {
             return nil
         }
-
-        return ByteBuffer(data: data)
+        
+        let mutableData = NSMutableData(data: data)
+        try mutableData.decompress(using: .lzma)
+        
+        let decompressed = mutableData as Data
+        
+        return ByteBuffer(data: decompressed)
     }
 }

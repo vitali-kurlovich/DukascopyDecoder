@@ -40,14 +40,17 @@ final class TicksDecoderTest: XCTestCase {
     func testTicksDecoding_1() throws {
         let begin = formatter.date(from: "02-01-2020 01:00")!
         let end = formatter.date(from: "02-01-2020 02:00")!
-        let range = begin ..< end
+        let range =  DateInterval(start: begin, end: end)
 
         let container = try decoder.decode(in: range, with: MocBi5.USDTHB)
 
         let dstBegin = accuracyFormatter.date(from: "02-01-2020 01:00:00.138")!
         let dstEnd = accuracyFormatter.date(from: "02-01-2020 01:59:53.390")!
 
-        XCTAssertEqualDate(container.ticksTimeRange!, dstBegin ..< dstEnd)
+        let dstRange =  DateInterval(start: dstBegin, end: dstEnd)
+        
+        XCTAssertEqualDate(container.ticksTimeRange!.start, dstRange.start)
+        XCTAssertEqualDate(container.ticksTimeRange!.end, dstRange.end)
 
         let buffer = ByteBuffer(data: MocBi5.USDTHB)
         let nioContainer = try decoder.decode(in: range, with: buffer)
